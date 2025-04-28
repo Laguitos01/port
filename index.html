@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Eu ainda amo minha ex 😭</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #000000, #1a1a1a);
+      color: white;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-top: 100px;
+      animation: pulse 2s infinite;
+    }
+
+    button {
+      padding: 20px 40px;
+      font-size: 1.5em;
+      margin-top: 50px;
+      background-color: pink;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 15px pink;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 2em;
+      animation: fall 5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { top: -10%; }
+      100% { top: 110%; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Eu ainda amo minha ex 😭</h1>
+  <button onclick="declararAmor()">Volta comigo?</button>
+
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function declararAmor() {
+      alert("é serio renatinha grata");
+    }
+
+    // Emojis caindo
+    const emojis = ["💔", "😭", "💌", "😢", "🥀"];
+    for (let i = 0; i < 30; i++) {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(emoji);
+    }
+  </script>
+
+</body>
+</html>
