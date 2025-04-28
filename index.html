@@ -1,85 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Eu ainda amo minha ex 😭</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom, #000000, #1a1a1a);
-      color: white;
-      font-family: 'Comic Sans MS', cursive;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-top: 100px;
-      animation: pulse 2s infinite;
-    }
-
-    button {
-      padding: 20px 40px;
-      font-size: 1.5em;
-      margin-top: 50px;
-      background-color: pink;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 15px pink;
-      transition: transform 0.2s ease;
-    }
-
-    button:hover {
-      transform: scale(1.1);
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    .emoji {
-      position: absolute;
-      font-size: 2em;
-      animation: fall 5s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes fall {
-      0% { top: -10%; }
-      100% { top: 110%; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voltar comigo?</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        h1 {
+            margin-bottom: 30px;
+            z-index: 2;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .accept {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .accept:hover {
+            background-color: #45a049;
+        }
+        .deny {
+            background-color: #f44336;
+            color: white;
+        }
+        .deny:hover {
+            background-color: #e53935;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.2; }
+        }
+        .emoji {
+            position: absolute;
+            font-size: 24px;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
 </head>
 <body>
+    <h1>Quer voltar comigo?</h1>
+    <div class="buttons">
+        <button class="accept" onclick="showLove()">Aceitar</button>
+        <button class="deny" id="denyButton" onclick="alert('vsfd 😢')">Negar</button>
+    </div>
 
-  <h1>Eu ainda amo minha ex 😭</h1>
-  <button onclick="declararAmor()">Volta comigo?</button>
+    <script>
+        const denyButton = document.getElementById('denyButton');
 
-  <audio autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-  </audio>
+        denyButton.addEventListener('mouseover', () => {
+            const bodyWidth = document.body.clientWidth;
+            const bodyHeight = document.body.clientHeight;
 
-  <script>
-    function declararAmor() {
-      alert("é serio renatinha grata");
-    }
+            const newX = Math.random() * (bodyWidth - denyButton.offsetWidth);
+            const newY = Math.random() * (bodyHeight - denyButton.offsetHeight);
 
-    // Emojis caindo
-    const emojis = ["💔", "😭", "💌", "😢", "🥀"];
-    for (let i = 0; i < 30; i++) {
-      const emoji = document.createElement("div");
-      emoji.classList.add("emoji");
-      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.animationDuration = (3 + Math.random() * 3) + "s";
-      document.body.appendChild(emoji);
-    }
-  </script>
+            denyButton.style.position = 'absolute';
+            denyButton.style.left = `${newX}px`;
+            denyButton.style.top = `${newY}px`;
+        });
 
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = Math.random() * window.innerHeight + 'px';
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(star);
+        }
+
+        for (let i = 0; i < 100; i++) {
+            createStar();
+        }
+
+        function showLove() {
+            alert('EBAAAAAA somos infinitos ❤️');
+            for (let i = 0; i < 30; i++) {
+                const emoji = document.createElement('div');
+                emoji.classList.add('emoji');
+                emoji.style.left = Math.random() * window.innerWidth + 'px';
+                emoji.innerText = '❤️';
+                document.body.appendChild(emoji);
+                setTimeout(() => emoji.remove(), 5000);
+            }
+        }
+
+        const sadEmojis = ['💔', '😭', '💌', '😢', '🥀'];
+
+        function createSadEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.style.left = Math.random() * window.innerWidth + 'px';
+            emoji.style.top = '-50px';
+            emoji.innerText = sadEmojis[Math.floor(Math.random() * sadEmojis.length)];
+            document.body.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 5000);
+        }
+
+        setInterval(createSadEmoji, 300);
+    </script>
 </body>
 </html>
